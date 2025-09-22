@@ -1,23 +1,32 @@
 import prompt from "prompt-sync";
 import { Controle } from "./controle";
 
-let control: Controle = new Controle(0, 0, 0, 0, 0);
 let teclado = prompt();
 let option: number = 0;
+let control: Controle = new Controle();
 
 while (option !== 9) {
-  console.log("=========Menu=========");
-  console.log("1. Lançar Notas ");
+  console.log("========= Menu =========");
+  console.log("1. Lançar Notas");
   console.log("9. Sair");
 
   option = +teclado("Escolha uma opção: ");
+
   switch (option) {
     case 1:
-      let pnota: number = +teclado("Digite a primeira nota: ");
-      let snota: number = +teclado("Digite a segunda nota: ");
-      let rnota: number = +teclado("Digite a terceira nota: ");
-      let xnota: number = +teclado("Digite a quarta nota: ");
-      
-      control.avaliacao(pnota, snota, rnota, xnota);
+      let notas: number[] = [];
+      for (let i = 1; i <= 4; i++) {
+        notas.push(+teclado(`Digite a nota ${i}: `));
+      }
+      control.notas = notas;
+      control.mostrarResultado();
+      break;
+
+    case 9:
+      console.log("Saindo do sistema...");
+      break;
+
+    default:
+      console.log("❌ Opção inválida, tente novamente!");
   }
 }

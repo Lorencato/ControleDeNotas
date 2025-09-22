@@ -1,59 +1,32 @@
 export class Controle {
-  constructor(
-    private _nota1: number,
-    private _nota2: number,
-    private _nota3: number,
-    private _nota4: number,
-    private _media: number
-  ) {}
+  private _notas: number[];
 
-  public get pnota(): number {
-    return this._nota1;
+  constructor(notas: number[] = []) {
+    this._notas = notas;
   }
 
-  public set pnota(pnota: number) {
-    this._nota1 = pnota;
+  get notas(): number[] {
+    return this._notas;
   }
 
-  public get snota(): number {
-    return this._nota2;
+  set notas(notas: number[]) {
+    this._notas = notas;
   }
 
-  public set snota(snota: number) {
-    this._nota2 = snota;
+  get media(): number {
+    if (this._notas.length === 0) return 0;
+    return this._notas.reduce((acc, val) => acc + val, 0) / this._notas.length;
   }
 
-  public get rnota(): number {
-    return this._nota3;
+  status(): string {
+    return this.media >= 60 ? "✅ Aprovado" : "❌ Reprovado";
   }
 
-  public set rnota(rnota: number) {
-    this._nota3 = rnota;
-  }
-
-  public get xnota(): number {
-    return this._nota4;
-  }
-
-  public set xnota(xnota: number) {
-    this._nota4 = xnota;
-  }
-
-  public get media(): number {
-    return this._media;
-  }
-
-  public set media(media: number) {
-    this._media = media;
-  }
-
-  avaliacao(pnota: number, snota: number, rnota: number, xnota: number): void {
-    this.media = (pnota + snota + rnota + xnota) / 4;
-    if (this.media >= 60) {
-      console.log("Aprovado");
-    } else {
-      console.log("Reprovado");
-    }
+  mostrarResultado(): void {
+    console.log("\n====== Resultado ======");
+    console.log("Notas:", this._notas.join(", "));
+    console.log("Média:", this.media.toFixed(2));
+    console.log("Situação:", this.status());
+    console.log("=======================\n");
   }
 }
-    
