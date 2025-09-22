@@ -23,10 +23,10 @@ export class Controle {
   }
 
   mostrarResultado(): void {
-    console.log("\n====== Resultado ======");
-    console.log("Notas:", this._notas.join(", "));
-    console.log("Média:", this.media.toFixed(2));
-    console.log("Situação:", this.status());
-    console.log("=======================\n");
+    console.log("\n====== 📊 Resultado ======");
+    console.log("📝 Notas:", this._notas.join(", "));
+    console.log("📈 Média:", this.media.toFixed(2));
+    console.log("🎯 Situação:", this.status());
+    console.log("==========================\n");
   }
 }
